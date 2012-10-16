@@ -1,0 +1,6 @@
+#!/bin/sh
+. /usr/local/lib/logrotate.sh
+
+# logs via syslogd
+
+relocate /var/log/misc/log 7

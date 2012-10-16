@@ -11,6 +11,11 @@ cookbook_file "/usr/local/lib/logrotate.sh" do
   mode "0755"
 end
 
+cookbook_file "/etc/cron.daily/300.logrotate" do
+  source "300.logrotate"
+  mode "0755"
+end
+
 directory "/var/log/misc" do
   owner "root"
   group "root"
