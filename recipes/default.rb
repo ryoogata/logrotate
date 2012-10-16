@@ -24,3 +24,18 @@ file "/var/log/misc/log" do
   mode "0644"
   action :create_if_missing
 end
+
+service "rsyslog" do
+  supports :restart => true, :start => true, :stop => true, :reload => true
+  action :nothing
+end 
+
+file "/var/log/messages" do
+  action :delete
+  not_if "test -L /var/log/messages"
+end
+
+link "/var/log/messages" do
+  to "/var/log/misc/log"
+  notifies :restart, "service[rsyslog]"
+end
